@@ -1,1 +1,18 @@
-111111111111
+git init 仓库名              创建仓库
+git clone 项目地址	     拷贝项目
+git status                   查看状态
+git add 文件名| .            添加到暂存区
+git commit -m "**"           提交到本地版本库
+git push orgin master        推送远程主分支
+git pull orgin master	     拉取远程主分支更改的最新内容
+git diff		     查看冲突
+git rm 文件名		     从缓存区中移除
+git mv 	文件名 新文件名	     重命名一个文件
+git branch (branchname)	     创建分支命令
+git checkout(branchname)     切换分支
+git merge (branchname)	     合并分支
+git branch -d (branchname)   删除分支
+git log                      查看提交历史
+git reset 		     回退
+git remote -v # 查看远程服务器地址和仓库名称
+git remote show origin # 查看远程服务器仓库状态
