@@ -1,0 +1,153 @@
+Redis存储类型
+
+字符串类型
+散列类型
+列表类型
+集合类型
+有序集合类型
+
+
+应用场景
+
+缓存  任务队列  应用排行榜	网站访问统计 数据过期处理 分布式集群架构中的session分离
+
+./bin/redis-cli shutdown
+
+存储String常用命令：
+赋值	取值	删除	数值增减		扩展命令  追加
+set     get     del     incr|decr|incrby|decrby		  append
+哈希存储常用命令：
+hset myhash username jack	添加某个
+hmset myhash2 username rose age 21 添加某些
+hget myhash username	获取某个
+hmget myhash2 username age  获取某些
+hgetall myhash 获取全部
+hdel myhash2 删除
+del myhash2
+hincrby myhash age 5
+hexists myhash username 判断是否存在
+hlen myhash2 长度
+hkeys myhash 获取键值
+hvals myhash 得到值
+
+存储list:
+ArrayList使用数组方式	linkedList使用双向链表方式
+双向链表中增加数据	双向链表中删除数据
+
+两端添加	
+lpush mylist a b c
+lpush mylist 1 2 3
+rpush mylist a b c
+rpush mylist 1 2 3
+
+查看列表	
+lrange mylist mylist 0 5|-1
+
+两端弹出
+lpop mylist
+
+rpop mylist
+
+获取列表元素个数
+llen mylish
+
+扩展命令
+lpushx mylist x 必须存在添加头部
+rpushx mylist y 必须存在添加尾部
+
+lrem mylist 2 3 会删除前两个3 
+lrem mylist 0 3 会删除所有2
+
+lset mylist 3 mmm 在第三个角标添加
+linsert mylist4 before b 11 在b添加或者after 后边
+rpoplpush mylist5 mylist6 
+
+存储Set:
+和List类型不同的是，Set集合中不允许出现重复的元素
+Set可包含的最大元素数量是4294967295
+
+常用命令
+添加/删除元素
+sadd myset a b c
+srem myset a b
+获得集合中的元素
+smembers myset
+sismember myset a
+集合中的差集运算
+sadd myal a b c
+sadd mybl a c 1 2
+sdiff myal mybl
+
+集合中的交集运算	
+sinter mya2 myb2
+集合中的并集运算
+sunion mya3 myb3
+扩展命令
+scard myset获取数量
+srandmember myset 随机获取
+sdiffstore my1 myal myb1 差集到一个集合上
+sinterstore my2 mya2 myb2 交集存到一个集合上
+sunionstore my3 mya3 myb3 并集存到一个集合上
+
+
+存储Sorted-Set
+Sorted-Set和Set的区别
+Sorted-Set中的成员在集合中有序的
+游戏排名 微博
+添加元素
+zadd mysort 70 zs 80 ls 90 ww
+
+获取元素
+zscore mysort zs
+zcard mysort 获取长度
+删除元素 
+zrem mysort ww ls
+显示
+zrange mysort 0 -1
+zrange mysort 0 -1 withscores
+范围查询
+zrevrange mysort 0 -1 withscores
+
+zremrangebyrank mysort 0 4
+zadd mysort 80 zs 90 ls 100ws
+zremrangebysorce mysort 80 100
+扩展命令
+zscore mysort ls
+
+zscore count ls
+
+key键
+keys my?
+del my1 my2 my3
+exists myl
+rename company newcompany 重命名
+expire newcompany 1000 设置过期时间
+ttl newcompany 剩余时间
+type newcompany 类型
+
+相关特性
+多数据库 
+16个 默认0  select 0|1|2|...
+move myset 1
+Redis事务
+multi 开启事务
+
+exec 提交事务
+discard 回滚
+
+
+持久化 
+RDB方式
+AOF方式
+日志记录
+
+无持久化
+
+
+
+
+
+
+
+
+
